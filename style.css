@@ -1,0 +1,72 @@
+:root{
+  --panel:#0f1329; --ink:#eaf0ff; --accent:#7d8bff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial;
+  color:var(--ink);
+  background:
+    radial-gradient(900px 600px at 80% -10%, #2a2f74 0%, transparent 60%),
+    radial-gradient(900px 600px at -10% 120%, #2c2b5f 0%, transparent 60%),
+    #0a0d1f;
+  display:grid; grid-template-rows:auto 1fr auto;
+  overscroll-behavior:none; -webkit-user-select:none; user-select:none;
+  touch-action:manipulation;
+}
+.hud{
+  display:flex; gap:12px; align-items:center; justify-content:center;
+  padding:10px 12px; background:var(--panel); border-bottom:1px solid #1b1f3f;
+  flex-wrap:wrap;
+}
+.controls, .hero-select{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.chip{
+  border:1px solid #334; background:#1a1f3f; color:var(--ink);
+  border-radius:999px; padding:6px 12px; cursor:pointer; font-weight:700;
+}
+.chip[aria-pressed="true"]{ outline:2px solid #7d8bff; }
+
+.game-wrap{ display:grid; place-items:center; padding:12px; }
+
+/* Scales to phone width; internal px set in JS */
+canvas{
+  image-rendering: pixelated;
+  background:#000; border:2px solid #243; border-radius:12px;
+  width: min(100vw, 672px); height: auto;
+}
+
+.dpad{ display:grid; place-items:center; padding:8px 0 20px; gap:10px; }
+.dpad button{
+  width:70px; height:70px; border-radius:14px; border:1px solid #334;
+  background:#13183a; color:var(--ink); font-size:22px; font-weight:800;
+}
+.dpad .h{ display:flex; gap:12px; }
+
+.overlay{ position:fixed; inset:0; display:grid; place-items:center; background:rgba(0,0,0,.55); z-index:50; }
+.hidden{display:none !important}
+.card{
+  width:min(90vw, 420px); background:var(--panel);
+  border:1px solid #203; border-radius:16px; padding:16px;
+  display:grid; gap:12px; justify-items:center; text-align:center;
+}
+.title{ margin:0; font-size: clamp(28px, 6vw, 44px); }
+.subtitle{ margin:0; opacity:.9; }
+.actions{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+.btn{ padding:10px 16px; border-radius:12px; border:1px solid #334; background:#1a1f3f; color:var(--ink); cursor:pointer; font-weight:700; }
+.btn.primary{ background: linear-gradient(180deg, var(--accent), #5a6aff); border-color: rgba(0,0,0,.2); color:#fff; }
+
+/* Countdown */
+.countdown{
+  position: fixed; inset: 0; z-index: 60;
+  display: grid; place-items: center;
+  font-size: clamp(64px, 16vw, 160px);
+  font-weight: 900; color: #fff;
+  text-shadow: 0 6px 28px rgba(0,0,0,.6);
+  animation: pop .25s ease;
+}
+@keyframes pop{ from{ transform: scale(.9); opacity:.6 } to{ transform: scale(1); opacity:1 } }
+
+/* Small iPhones */
+@media (max-width: 420px){
+  .dpad button{ width:56px; height:56px; font-size:20px; }
+}

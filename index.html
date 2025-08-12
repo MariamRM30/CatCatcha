@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Pixel Chomp — Cat Chase</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hud">
+    <div>Score: <span id="score">0</span></div>
+    <div>Lives: <span id="lives">3</span></div>
+    <div>Time: <span id="time">00:00</span></div>
+
+    <div class="controls">
+      <button id="btn-pause" class="chip">Pause</button>
+
+      <div class="startdir">
+        Start:
+        <button class="chip" data-startdir="random" aria-pressed="true">Random</button>
+        <button class="chip" data-startdir="left" aria-pressed="false">Left</button>
+      </div>
+
+      <div class="speed">
+        Speed:
+        <button class="chip" data-speed="slow">Slow</button>
+        <button class="chip" data-speed="normal" aria-pressed="true">Normal</button>
+        <button class="chip" data-speed="fast">Fast</button>
+      </div>
+
+      <div class="enemycount">
+        Enemies:
+        <button class="chip" data-enemies="1" aria-pressed="true">1</button>
+        <button class="chip" data-enemies="2">2</button>
+        <button class="chip" data-enemies="3">3</button>
+      </div>
+    </div>
+
+    <div class="hero-select">
+      Hero:
+      <button data-hero="girl" class="chip" aria-pressed="true">Wavy Girl</button>
+      <button data-hero="yellow" class="chip">Circle</button>
+      <button data-hero="custom" class="chip">Custom PNG</button>
+      <input id="custom-file" type="file" accept="image/png" hidden />
+    </div>
+  </header>
+
+  <main class="game-wrap">
+    <canvas id="game" width="672" height="576" aria-label="game canvas"></canvas>
+  </main>
+
+  <footer class="dpad">
+    <button data-dir="up" aria-label="Up">▲</button>
+    <div class="h">
+      <button data-dir="left" aria-label="Left">◀</button>
+      <button data-dir="down" aria-label="Down">▼</button>
+      <button data-dir="right" aria-label="Right">▶</button>
+    </div>
+  </footer>
+
+  <section id="start-screen" class="overlay">
+    <div class="card">
+      <h1 class="title">Pixel Chomp</h1>
+      <p class="subtitle">Eat all pellets. Avoid the cats. Win = cats everywhere 🐱</p>
+      <button id="btn-start" class="btn primary">Start Game</button>
+      <small>Use D-pad or Arrow keys. Space = Pause.</small>
+    </div>
+  </section>
+
+  <section id="overlay" class="overlay hidden">
+    <div class="card">
+      <h2 id="overlay-title">Paused</h2>
+      <p id="overlay-sub">Tap to continue</p>
+      <div class="actions">
+        <button id="btn-continue" class="btn">Continue</button>
+        <button id="btn-restart" class="btn">Restart</button>
+        <button id="btn-exit" class="btn">Exit to Start</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="countdown" class="countdown hidden">3</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
